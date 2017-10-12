@@ -28,9 +28,17 @@ function get(URL, callback) {
 
 }
 
+function _handleErro(err) {
+  console.log(`Request failed: ${err}`);
+}
 
 get("https://swapi.co/api/people/1/", function onResponse(err, luke) {
-  if (err) return console.log(`Request failed: ${err}`);
-  console.log(`Request succeded`);
-  console.log('luke', luke);
+  if (err) return _handleError(err);
+
+  get(luke.homeworld, function onHomeworldResponse(err, homeworld) {
+    if (err) return _handleError(err);
+    luke.homeworld = homeworld;
+    console.log(`${luke.name} nació en ${luke.homeworld.name}`);
+  });
+
 });
