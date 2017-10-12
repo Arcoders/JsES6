@@ -29,8 +29,8 @@ function get(URL, callback) {
 }
 
 
-get('http://swapi.co/api/people/1/', function onResponse(err, luke) {
-  if (err) console.log(`Request failed: ${err}`);
+get("https://swapi.co/api/people/1/", function onResponse(err, luke) {
+  if (err) return console.log(`Request failed: ${err}`);
   console.log(`Request succeded`);
   console.log('luke', luke);
 });
